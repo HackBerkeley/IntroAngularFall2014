@@ -17,6 +17,21 @@ body {
 }
 
 .space-invader {
+	transition: left .1s, top .1s;
+	position: absolute;
+	width: 5%;
+	height: 5%;
+}
+
+.tank {
+	transition: left .1s, top .1s;
+	position: absolute;
+	width: 5%;
+	height: 5%;
+}
+
+.bullet {
+	transition: left .1s, top .1s;
 	position: absolute;
 	width: 5%;
 	height: 5%;

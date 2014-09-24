@@ -28,31 +28,64 @@ angular.module('SIApp', [])
         return leftmostInvaderPosition;
     }
     $scope.spaceInvaders = [];
+    $scope.bullets = [];
+    $scope.tank = {
+        left: Math.floor(TOTAL_COLUMNS/2),
+        top: TOTAL_ROWS-1
+    };
+    $scope.tankAction = function(e){
+        //console.log(e);
+        if(e.keyCode == 37) {
+            console.log('asdf');
+            if ($scope.tank.left >0){
+                $scope.tank.left--;
+            }
+        }
+        else if(e.keyCode == 39) { 
+            if ($scope.tank.left < TOTAL_COLUMNS-1){
+                $scope.tank.left++;
+            }
+        }
+        else if (e.keyCode == 32) {
+            $scope.bullets.push({top: $scope.tank.top-1, left: $scope.tank.left});
+        }
+    };
     for(var row=1;row<num_rows;row++){
         for(var column=1;column<num_columns;column++){
             $scope.spaceInvaders.push({top:row,left:column});
         }
     }
     var direction = 1;
+    var tick = 0;
     $interval(function(){
-        if (direction == 1 && getRightmostPosition() >= TOTAL_COLUMNS-1){
-            for(var i=0; i<$scope.spaceInvaders.length; i++){
-                $scope.spaceInvaders[i].top++;
+        if (tick % 4 == 0) {
+            if (direction == 1 && getRightmostPosition() >= TOTAL_COLUMNS-1){
+                for(var i=0; i<$scope.spaceInvaders.length; i++){
+                    $scope.spaceInvaders[i].top++;
+                }
+                direction = -1;
             }
-            direction = -1;
-        }
-        else if (direction == -1 && getLeftmostPosition() <= 0){
-            for(var i=0; i<$scope.spaceInvaders.length; i++){
-                $scope.spaceInvaders[i].top++;
+            else if (direction == -1 && getLeftmostPosition() <= 0){
+                for(var i=0; i<$scope.spaceInvaders.length; i++){
+                    $scope.spaceInvaders[i].top++;
+                }
+                direction = 1;
             }
-            direction = 1;
-        }
-        else {
-            for(var i=0; i<$scope.spaceInvaders.length; i++){
-                $scope.spaceInvaders[i].left += direction;
+            else {
+                for(var i=0; i<$scope.spaceInvaders.length; i++){
+                    $scope.spaceInvaders[i].left += direction;
+                }
             }
         }
-    },1000);
+        for (var i = $scope.bullets.length-1; i >= 0; i--) {
+            if ($scope.bullets[i].top < 0) {
+                $scope.bullets.splice(i, 1);
+            } else {
+                $scope.bullets[i].top--;
+            }
+        }
+        tick++;
+    }, 100);
 }]);
 
 })();
