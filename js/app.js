@@ -22,7 +22,7 @@ angular.module('SIApp', [])
         var leftmostInvaderPosition = TOTAL_COLUMNS-1;
         for(var i=0; i<$scope.spaceInvaders.length; i++){
             if ($scope.spaceInvaders[i].left < leftmostInvaderPosition){
-                leftmostInvaderPosition = $scope.spaceInvaders[i].left
+                leftmostInvaderPosition = $scope.spaceInvaders[i].left;
             }
         }
         return leftmostInvaderPosition;
@@ -47,12 +47,12 @@ angular.module('SIApp', [])
             }
         }
         else if (e.keyCode == 32) {
-            $scope.bullets.push({top: $scope.tank.top-1, left: $scope.tank.left});
+            $scope.bullets.push({top: $scope.tank.top-1, left: $scope.tank.left, show: true});
         }
     };
     for(var row=1;row<num_rows;row++){
         for(var column=1;column<num_columns;column++){
-            $scope.spaceInvaders.push({top:row,left:column});
+            $scope.spaceInvaders.push({top:row,left:column,show:true});
         }
     }
     var direction = 1;
@@ -82,6 +82,16 @@ angular.module('SIApp', [])
                 $scope.bullets.splice(i, 1);
             } else {
                 $scope.bullets[i].top--;
+            }
+            for (var j=0; j<$scope.spaceInvaders.length; j++){
+                if($scope.bullets[i]){
+                    if($scope.spaceInvaders[j].show && $scope.bullets[i].top == $scope.spaceInvaders[j].top 
+                    && $scope.bullets[i].left == $scope.spaceInvaders[j].left){
+                        $scope.bullets[i].show = false;
+                        $scope.spaceInvaders[j].show = false;
+                        $scope.bullets.splice(i, 1);
+                    }
+                }
             }
         }
         tick++;

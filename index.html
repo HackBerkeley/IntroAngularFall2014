@@ -8,9 +8,9 @@
 	</head>
 	<body ng-keydown="tankAction($event)" tabindex="0" ng-controller="SICtrl">
 		<div id="game-area">
-			<img class="space-invader" ng-repeat="si in spaceInvaders" style="left: {{si.left*5}}%; top: {{si.top*5}}%;" src="img/space_invader.png">
+			<img class="space-invader" ng-repeat="si in spaceInvaders" ng-show="si.show" style="left: {{si.left*5}}%; top: {{si.top*5}}%;" src="img/space_invader.png">
 			<img class="tank" src="img/tank.png" style="left: {{tank.left*5}}%; top: {{tank.top*5}}%;">
-			<img class="bullet" ng-repeat="bullet in bullets" src="img/bullet.png" style="left: {{bullet.left*5}}%; top: {{bullet.top*5}}%;">
+			<img class="bullet" ng-repeat="bullet in bullets" ng-show="bullet.show" src="img/bullet.png" style="left: {{bullet.left*5}}%; top: {{bullet.top*5}}%;">
 		</div>
 	</body>
 </html>
