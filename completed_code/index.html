@@ -6,12 +6,12 @@
 		<script type="text/javascript" src="js/third_party/angular.min.js"></script>
 		<script type="text/javascript" src="js/app.js"></script>
 	</head>
-	<body ng-keydown="tankAction($event)" tabindex="0" ng-controller="SICtrl">
+	<body ng-keydown="tankAction($event)" ng-controller="SICtrl">
 		<div id="game-area">
 			Score: {{score}}
-			<img class="space-invader" ng-repeat="si in spaceInvaders" ng-show="si.show" style="left: {{si.left*5}}%; top: {{si.top*5}}%;" src="img/space_invader.png">
-			<img class="tank" src="img/tank.png" style="left: {{tank.left*5}}%; top: {{tank.top*5}}%;">
-			<img class="bullet" ng-repeat="bullet in bullets" ng-show="bullet.show" src="img/bullet.png" style="left: {{bullet.left*5}}%; top: {{bullet.top*5}}%;">
+			<img class="space-invader" ng-repeat="si in spaceInvaders" ng-show="si.show" style="left: {{si.column*5}}%; top: {{si.row*5}}%;" src="img/space_invader.png">
+			<img class="tank" src="img/tank.png" style="left: {{tank.column*5}}%; top: {{tank.row*5}}%;">
+			<img class="bullet" ng-repeat="bullet in bullets" ng-show="bullet.show" src="img/bullet.png" style="left: {{bullet.column*5}}%; top: {{bullet.row*5}}%;">
 			<div class="game-ended" ng-show="game_ended">{{win_or_lose}}</div>
 		</div>
 	</body>
