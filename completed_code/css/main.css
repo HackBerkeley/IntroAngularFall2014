@@ -1,0 +1,38 @@
+body {
+	background-color: #112;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#game-area {
+	overflow: hidden;
+	position: relative;
+	width: 100vh;
+	height: 100vh;
+	margin: 0 auto 0 auto;
+	background-color: #000;
+	color: #fff;
+}
+
+.space-invader {
+	transition: left .1s, top .1s;
+	position: absolute;
+	width: 5%;
+	height: 5%;
+}
+
+.tank {
+	transition: left .1s, top .1s;
+	position: absolute;
+	width: 5%;
+	height: 5%;
+}
+
+.bullet {
+	transition: left .1s, top .1s;
+	position: absolute;
+	width: 5%;
+	height: 5%;
+}
